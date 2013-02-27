@@ -40,8 +40,19 @@ def FeedForward(network, input):
   """
   network.CheckComplete()
   # 1) Assign input values to input nodes
+  for i in range(0,len(input.values)):
+    network.inputs[i].raw_value = input.values[i]
+    network.inputs[i].transformed_value = input.values[i]
+  
   # 2) Propagates to hidden layer
+  for node in network.hidden_nodes:
+    node.raw_value = NeuralNetwork.ComputeRawValue(node)
+    node.transformed_value = NeuralNetwork.Sigmoid(node.raw_value)
+  
   # 3) Propagates to the output layer
+  for node in network.outputs:
+    node.raw_value = NeuralNetwork.ComputeRawValue(node)
+    node.transformed_value = NeuralNetwork.Sigmoid(node.raw_value) 
   pass
 
 #< --- Problem 3, Question 2
