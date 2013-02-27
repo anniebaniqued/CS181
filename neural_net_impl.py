@@ -262,7 +262,9 @@ class EncodedNetworkFramework(NetworkFramework):
     
     """
     # Replace line below by content of function
-    raise NotImplementedError
+    for lst in image.pixels:
+      for i in len(lst):
+        lst[i] /= 256.0
 
   def InitializeWeights(self):
     """
@@ -285,7 +287,8 @@ class EncodedNetworkFramework(NetworkFramework):
     
     """
     # replace line below by content of function
-    pass
+    return random.uniform(-.01, .01)
+
 
 
 
