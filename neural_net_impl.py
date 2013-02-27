@@ -99,8 +99,41 @@ def Backprop(network, input, target, learning_rate):
   """
   network.CheckComplete()
   # 1) We first propagate the input through the network
+  FeedForward(network, input)
+
   # 2) Then we compute the errors and update the weigths starting with the last layer
+    
   # 3) We now propagate the errors to the hidden layer, and update the weights there too
+  delta = {}
+  for node in network.node_set:
+    delta[node] = 0
+
+  for m in range(0,len(network.outputs)):
+    e_m = target.values[m] - network.outputs[m].transformed_value
+    delta[network.outputs[m]] = NeuralNetwork.Sigmoid(network.outputs[m].raw_value)*e_m
+
+  for m in range(1,len(network.hidden_nodes)+1):
+    e_m = 0 
+    for j in range(0,len(network.hidden_nodes[-m].forward_neighbors))
+      e_m +=  network.hidden_nodes[-m].forward_weight[j]*delta[network.hidden_nodes[-m].forward_neighbors[j]
+    delta[network.hidden_nodes[-m]] = NeuralNetwork.Sigmoid(network.hidden_nodes[-m].raw_value)*e_m
+
+  for m in range(1,len(network.inputs)+1):
+    e_m = 0 
+    for j in range(0,len(network.inputs[-m].forward_neighbors))
+      e_m +=  network.inputs[-m].forward_weight[j]*delta[network.inputs[-m].forward_neighbors[j]
+    delta[network.inputs[-m]] = NeuralNetwork.Sigmoid(network.inputs[-m].raw_value)*e_m
+
+  for m in range(0, len(network.inputs)):
+    for j in range(0,len(network.inputs[m].forward_neighbors)):
+        network.inputs[m].forward_weights[j] += learning_rate*network.inputs[m].forward_neighbors[j].transformed_value*delta[network.inputs[m]]
+
+  for m in range(0, len(network.hidden_nodes)):
+    for j in range(0,len(network.hidden_nodes[m].forward_neighbors)):
+        network.hidden_nodes[m].forward_weights[j] += learning_rate*network.hidden_nodes[m].forward_neighbors[j].transformed_value*delta[network.hidden_nodes[m]]
+
+  # 3) We now propagate the errors to the hidden layer, and update the weights there too
+
   pass
 
 # <--- Problem 3, Question 3 --->
