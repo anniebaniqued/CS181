@@ -107,7 +107,7 @@ def Backprop(network, input, target, learning_rate):
     delta[node] = 0
 
   for m in range(0,len(network.outputs)):
-    e_m = target.values[m] - network.outputs[m].transformed_value
+    e_m = target[m] - network.outputs[m].transformed_value
     delta[network.outputs[m]] = NeuralNetwork.Sigmoid(network.outputs[m].raw_value)*e_m  
 
   # 3) We now propagate the errors to the hidden layer
@@ -152,7 +152,10 @@ def Train(network, inputs, targets, learning_rate, epochs):
   """
   network.CheckComplete()
 
-  
+  for i in range(epochs):
+    for j in range(0,len(inputs)):
+      Backprop(network, inputs[j], targets[j], learning_rate):
+
   pass
   
 
