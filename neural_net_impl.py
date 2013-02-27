@@ -36,7 +36,7 @@ def FeedForward(network, input):
   In particular, you should initialize the input nodes using these input
   values:
 
-  network.inputs[i].raw_value = input[i]
+  network.inputs[i].raw_value = input.values[i]
   """
   network.CheckComplete()
   # 1) Assign input values to input nodes
