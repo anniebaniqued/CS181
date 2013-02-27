@@ -1,0 +1,10 @@
+1. not sure about both at once, but yes individually (if question is asking about individually, just have all weights be 1, set threshold to 7.5)
+both at once, i think NOT - need more neurons to do the OR. there can only be one threshold, so we can only tell one of the two but not both at once
+
+2. YES. w1, w2, w3 = 1/3; w4...w9 = -1/6, threshold = 0
+
+3. probably not. how to prove?
+
+perceptrons can only provide linear decision boundaries and there is no linear separator that separates out all possible paths from nonpaths
+
+(think about feature transformations ..)
