@@ -302,9 +302,6 @@ class EncodedNetworkFramework(NetworkFramework):
     for weight in self.network.weights:
       weight.value = random.uniform(-.01, .01)
 
-
-
-
 #<--- Problem 3, Question 6 --->
 
 class SimpleNetwork(EncodedNetworkFramework):
