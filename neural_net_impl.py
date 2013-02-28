@@ -118,27 +118,27 @@ def Backprop(network, input, target, learning_rate):
 
   for m in range(1,len(network.hidden_nodes)+1):
     e_m = 0 
-    for j in range(0,len(network.hidden_nodes[-m].forward_neighbors))
-      e_m +=  network.hidden_nodes[-m].forward_weights[j]*delta[network.hidden_nodes[-m].forward_neighbors[j]]
+    for j in range(0,len(network.hidden_nodes[-m].forward_neighbors)):
+      e_m +=  network.hidden_nodes[-m].forward_weights[j].value*delta[network.hidden_nodes[-m].forward_neighbors[j]]
     delta[network.hidden_nodes[-m]] = NeuralNetwork.SigmoidPrime(network.hidden_nodes[-m].raw_value)*e_m
 
   # 3b) Propagate errors to the input layer's edges to the first hidden layer
 
   for m in range(1,len(network.inputs)+1):
     e_m = 0 
-    for j in range(0,len(network.inputs[-m].forward_neighbors))
-      e_m +=  network.inputs[-m].forward_weights[j]*delta[network.inputs[-m].forward_neighbors[j]]
+    for j in range(0,len(network.inputs[-m].forward_neighbors)):
+      e_m +=  network.inputs[-m].forward_weights[j].value*delta[network.inputs[-m].forward_neighbors[j]]
     delta[network.inputs[-m]] = NeuralNetwork.SigmoidPrime(network.inputs[-m].raw_value)*e_m
 
   # 4) Update weights
 
   for m in range(0, len(network.inputs)):
     for j in range(0,len(network.inputs[m].forward_neighbors)):
-        network.inputs[m].forward_weights[j] += learning_rate*network.inputs[m].transformed_value*delta[network.inputs[m].forward_neighbors[j]]
+        network.inputs[m].forward_weights[j].value += learning_rate*network.inputs[m].transformed_value*delta[network.inputs[m].forward_neighbors[j]]
 
   for m in range(0, len(network.hidden_nodes)):
     for j in range(0,len(network.hidden_nodes[m].forward_neighbors)):
-        network.hidden_nodes[m].forward_weights[j] += learning_rate*network.hidden_nodes[m].transformed_value*delta[network.hidden_nodes[m].forward_neighbors[j]]
+        network.hidden_nodes[m].forward_weights[j].value += learning_rate*network.hidden_nodes[m].transformed_value*delta[network.hidden_nodes[m].forward_neighbors[j]]
   pass
 
 # <--- Problem 3, Question 3 --->
@@ -244,7 +244,7 @@ class EncodedNetworkFramework(NetworkFramework):
     
     """
     
-    output_labels = np.array((map(lambda node: node.transformed_value, self.network.outputs))
+    output_labels = np.array(map(lambda node: node.transformed_value, self.network.outputs))
     return output_labels.argmax(axis=0)
 
 
@@ -300,7 +300,7 @@ class EncodedNetworkFramework(NetworkFramework):
     """
     # replace line below by content of function
     for weight in self.network.weights:
-      weight = random.uniform(-.01, .01)
+      weight.value = random.uniform(-.01, .01)
 
 
 
@@ -334,12 +334,11 @@ class SimpleNetwork(EncodedNetworkFramework):
     # 2) Add an output node for each possible digit label.
     for i in range(10):
       toAdd = Node()
-      toAdd.inputs = self.network.inputs
       self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
 
-    # connect inputs to outputs
-    for i in range(196):
-      self.network.inputs[i].forward_neighbors = self.network.outputs
+      for i in range(196):
+        toAdd.AddInput(self.network.inputs[i], False, self.network)
+
 
     pass
 
