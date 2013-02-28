@@ -327,7 +327,20 @@ class SimpleNetwork(EncodedNetworkFramework):
     super(SimpleNetwork, self).__init__() # < Don't remove this line >
     
     # 1) Adds an input node for each pixel.    
+    for i in range(196):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.INPUT)
+
     # 2) Add an output node for each possible digit label.
+    for i in range(10):
+      toAdd = Node()
+      toAdd.inputs = self.network.inputs
+      self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
+
+    # connect inputs to outputs
+    for i in range(196):
+      self.network.inputs[i].forward_neighbors = self.network.outputs
+
     pass
 
 
