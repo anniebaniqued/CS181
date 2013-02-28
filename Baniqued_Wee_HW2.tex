@@ -1,0 +1,174 @@
+%
+\documentclass[12pt,letterpaper]{article}
+\usepackage{bbm}
+\usepackage{url}
+\usepackage{fancyhdr}
+%\usepackage{fancybox}
+%\usepackage{amstext}
+\usepackage{amsmath}
+%\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{pictexwd}
+\usepackage{enumitem}
+%\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{booktabs,multirow}
+\usepackage{siunitx}
+
+\setlength{\parindent}{0in}
+\setlength{\textwidth}{7in}
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textheight}{9in}
+
+
+%               Problem and Part
+\newcounter{problemnumber}
+\newcounter{partnumber}
+\newcommand{\Problem}{\stepcounter{problemnumber}\setcounter{partnumber}{0}\item[\makebox{\hfil\textbf{\ \theproblemnumber.}\hfil}]}
+\newcommand{\Part}{\stepcounter{partnumber}\item[(\arabic{partnumber})]}
+\newcommand{\SubPart}{\stepcounter{problemnumber}\setcounter{partnumber}{0}}
+\newcommand{\InPart}[1]{\stepcounter{partnumber}(\alph{partnumber})\ \ \parbox[t]{2.25in}{#1}}
+\newcommand{\InSmallPart}[1]{\stepcounter{partnumber}(\alph{partnumber})\ \ \parbox[t]{1.05in}{#1}}
+
+\pagestyle{empty}
+\rhead{\large\texts{Angeline Baniqued \& Michael Wee}}
+\lhead{\LARGE\textbf{CS 181: Assignment 1}}
+\cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+
+\thispagestyle{fancy}\small
+
+\setcounter{problemnumber}{0}
+\begin{enumerate}
+
+  \Problem \textbf{\textsc{\large{Perceptrons}}} \medskip
+  
+  \begin{enumerate}
+    \Part 
+       
+        
+  \end{enumerate}
+  \bigskip 
+
+  \Problem \textbf{\textsc{\large{Learning Algorithms} }} \medskip 
+  \begin{enumerate} 
+    \Part 
+  \end{enumerate}
+  \bigskip 
+  
+  \Problem \textbf{\textsc{\large{Neural Networks}}} \medskip
+        \begin{enumerate}
+        \Part See FeedForward function.\medskip
+        \Part See Backprop function.\medskip
+        \Part See Train function.\medskip
+        \Part See EncodeLabel, GetNetworkLabel, Convert and InitializeWeights  functions.\medskip 
+        \Part 
+        \medskip
+         
+        \Part Simple Network \medskip
+               \begin{enumerate}[label={\alph*) },ref={\alph*)}]
+                \item \textbf{Learning rate = 1.0} \medskip
+                \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
+                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
+                                \item
+                                \item
+                                \item
+                        \end{enumerate} 
+                        \bigskip
+                \item Training set performance = \\
+                      Validation set performance = \\
+                      Test set performance = 
+                      \bigskip                     
+               \end{enumerate} \medskip
+               \begin{enumerate}[label={\alph*) },ref={\alph*)}]
+               \item \textbf{Learning rate = 0.1} \medskip
+                \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
+                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
+                                \item
+                                \item
+                                \item
+                        \end{enumerate} 
+                        \bigskip
+                \item Training set performance = \\
+                      Validation set performance = \\
+                      Test set performance = 
+                      \bigskip
+                \end{enumerate} \medskip
+                
+                \begin{enumerate}[label={\alph*) },ref={\alph*)}]
+               \item \textbf{Learning rate = 0.01} \medskip
+                \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
+                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
+                                \item
+                                \item
+                                \item
+                        \end{enumerate} 
+                        \bigskip
+                \item Training set performance = \\
+                      Validation set performance = \\
+                      Test set performance = 
+                      \bigskip
+                \end{enumerate}  \medskip
+                
+                \begin{enumerate}[label={\alph*) },ref={\alph*)}]
+               \item \textbf{Learning rate = 0.001} \medskip
+                \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
+                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
+                                \item
+                                \item
+                                \item
+                        \end{enumerate} 
+                        \bigskip
+                \item Training set performance = \\
+                      Validation set performance = \\
+                      Test set performance = 
+                      \bigskip
+                \end{enumerate} \bigskip
+          \Part Hidden Network \medskip
+                \begin{enumerate}[label={\alph*) },ref={\alph*)}]
+                \item We used learning rates of different magnitudes such as 1.0, 0.1, 0.01 and 0.001. \medskip
+                \item dfdfd
+                        \medskip
+                \item Chart of Training Set and Validation Set Error vs. Number of Epochs \medskip
+                \item dfd
+                      \medskip
+                \item dfd 
+                        \medskip
+                \item dfd 
+                \bigskip
+                \bigskip
+                \end{enumerate}
+          \Part Hidden Network \medskip
+          \begin{enumerate}[label={\alph*)},ref={\alph*)}]
+                \item We used learning rates of different magnitudes such as 1.0, 0.1, 0.01 and 0.001. \medskip
+                \item dfdfd
+                        \medskip
+                \bigskip
+                \end{enumerate}
+        \end{enumerate}
+     \bigskip \\
+  
+  \Problem \textbf{\textsc{\large{Alternative Error Function}}} \medskip
+        \begin{enumerate}
+        \Part d
+        \medskip
+        \Part
+        \end{enumerate}
+    \bigskip \\
+
+\end{enumerate}
+
+        
+
+  \end{enumerate}
+
+  \bigskip
+  
+ 
+\end{enumerate}
+\end{document}
