@@ -383,7 +383,7 @@ class HiddenNetwork(EncodedNetworkFramework):
       self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
 
       for i in range(number_of_hidden_nodes):
-        toAdd.AddInput(self.network.inputs[i], False, self.network)
+        toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
 
     pass
     
