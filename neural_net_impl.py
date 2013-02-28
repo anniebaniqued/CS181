@@ -1,6 +1,7 @@
 from neural_net import NeuralNetwork, NetworkFramework
 from neural_net import Node, Target, Input
 import random
+import numpy as np
 
 
 # <--- Problem 3, Question 1 --->
@@ -208,7 +209,12 @@ class EncodedNetworkFramework(NetworkFramework):
     
     """
     # Replace line below by content of function
-    raise NotImplementedError
+    enc = []
+    for i in range(10): 
+      enc.append(0.0)
+    enc[label] = 1.0
+
+    return enc
 
   def GetNetworkLabel(self):
     """
@@ -237,8 +243,10 @@ class EncodedNetworkFramework(NetworkFramework):
     # which is 3
     
     """
-    # Replace line below by content of function
-    raise NotImplementedError
+    
+    output_labels = np.array((map(lambda node: node.transformed_value, self.network.outputs))
+    return output_labels.argmax(axis=0)
+
 
   def Convert(self, image):
     """
