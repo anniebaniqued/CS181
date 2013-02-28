@@ -370,21 +370,7 @@ class HiddenNetwork(EncodedNetworkFramework):
       self.network.AddNode(toAdd, NeuralNetwork.INPUT)
     
     # 2) Adds the hidden layer
-    for i in range(number_of_hidden_nodes):
-      toAdd = Node()
-      self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
-
-      for i in range(196):
-        toAdd.AddInput(self.network.inputs[i], False, self.network)
-
     # 3) Adds an output node for each possible digit label.
-    for i in range(10):
-      toAdd = Node()
-      self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
-
-      for i in range(number_of_hidden_nodes):
-        toAdd.AddInput(self.network.inputs[i], False, self.network)
-
     pass
     
 
