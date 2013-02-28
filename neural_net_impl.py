@@ -262,9 +262,13 @@ class EncodedNetworkFramework(NetworkFramework):
     
     """
     # Replace line below by content of function
+    out = Input()
+
     for lst in image.pixels:
-      for i in len(lst):
-        lst[i] /= 256.0
+      for pixel in lst:
+        out.values.append(pixel / 256.0)
+
+    return out
 
   def InitializeWeights(self):
     """
@@ -287,7 +291,8 @@ class EncodedNetworkFramework(NetworkFramework):
     
     """
     # replace line below by content of function
-    return random.uniform(-.01, .01)
+    for weight in self.network.weights:
+      weight = random.uniform(-.01, .01)
 
 
 
