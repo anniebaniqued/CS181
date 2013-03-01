@@ -103,68 +103,78 @@ A perceptron cannot detect this feature. There are too many variations and combi
         \Part See Backprop function.\medskip
         \Part See Train function.\medskip
         \Part See EncodeLabel, GetNetworkLabel, Convert and InitializeWeights  functions.\medskip 
-        \Part 
+        \Part Input data normalization is useful when we think about the shape of the sigmoid function which is the activation function we use. The sigmoid function is approximately linear when input is near 0 and converges to 1 for large input and 0 for small input. Since the activation/sigmoid function takes in the linear combination of weights and activity at each parent node, we want that linear combination to be around the vicinity of 0 which can be achieved by normalizing the input values from [0,255] to between [0,1]. \medskip
+
+        Furthermore, if we have a wide range of input values, the bigger values will tend to
+have a higher contribution to the output error, and so, the error reduction algorithm will
+be focused on the higher values, neglecting the information from the small
+valued variables. 
         \medskip
          
         \Part Simple Network \medskip
-               \begin{enumerate}[label={\alph*) },ref={\alph*)}]
-                \item \textbf{Learning rate = 1.0} \medskip
+               \begin{enumerate}[label={\alph*)},ref={\alph*)}]
+                \item \textbf{Chosen learning rate = 1.0} \medskip
                 \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
                         \includegraphics[width=5in]{simple_1p0.png}
-                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
-                                \item
-                                \item
-                                \item
+                         \begin{enumerate}[label={\roman*)},ref={\roman*)}]
+                                \item Like other statistical models, neural networks are also subject to overfitting. By looking at the plot of the number of epochs of training on the x-axis, and the classification error on the y-axis, we see the standard overfitting phenomenon. \medskip
+                                \item From the plot, the classification error on the validation set increases at around epoch 23, so we could train for 23 epochs and then stop there. \medskip 
+                                \item It's useful to divide the dataset into three (train, validation and test) because each set serves an important purpose. We need the training set to actually train the neural network, but then during training, the classification error on the training set will continue to decrease as the number of epochs increases. Thus, we need the validation set because there will be some point after which we will be overfitting and we can detect overfitting by looking at when the validation set increases. It's important to use the validation set instead of the test set because (1) we shouldn't be peeking at the test data because the test set should be set aside for when we want to 'test' a non-overfitting neural network  and (2) without a validation set, we wouldn't be able to find a non-overfitting neural network to test. \medskip
                         \end{enumerate} 
-                        \bigskip
-                \item Training set performance = \\
-                      Validation set performance = \\
-                      Test set performance = 
+                \item This training rate\ of 1.0 produced the highest performance on the training, validation and test sets: \\  Training set performance = 0.89\\
+                      Validation set performance = 0.87\\
+                      Test set performance = 0.91
                       \bigskip                     
                \end{enumerate} \medskip
+               \end{enumerate}
+
+                For reference and comparison, here are the results of the other learning rates that we didn't end up choosing\ (0.1, 0.01, 0.001). 
                \begin{enumerate}[label={\alph*) },ref={\alph*)}]
                \item \textbf{Learning rate = 0.1} \medskip
                 \item Chart of Training Set and Validation Set Error vs. Number of Epochs \\
                         \includegraphics[width=5in]{simple_0p1.png}
                         \begin{enumerate}[label={\roman*)},ref={\alph*)}]
-                                \item
-                                \item
-                                \item
+                                \item same answer as in the 1.0 learning  rate case \medskip
+                                \item From the plot, the classification error on the validation set increases at around epoch 14, so we could train for 14 epochs and then stop there. \medskip 
+                                \item same answer as in the 1.0 learning rate case
                         \end{enumerate} 
                         \bigskip
-                \item Training set performance = \\
-                      Validation set performance = \\
-                      Test set performance = 
+                \item Training set performance = 0.88\\
+                      Validation set performance = 0.87\\
+                      Test set performance = 0.91
                       \bigskip
                 \end{enumerate} \medskip
                 
                 \begin{enumerate}[label={\alph*) },ref={\alph*)}]
                \item \textbf{Learning rate = 0.01} \medskip
                 \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
-                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
-                                \item
-                                \item
-                                \item
+                        \includegraphics[width=5in]{simple_0p01.png}
+                        \begin{enumerate}[label={\roman*) },ref={\alph*)}]
+                                \item same answer as in the 1.0 learning  rate case \medskip
+                                \item From the plot, the classification error on the validation set increases at around epoch 19, so we could train for 19 epochs and then stop there. \medskip
+                                \item same answer as in the 1.0 learning rate case \medskip
+
                         \end{enumerate} 
                         \bigskip
-                \item Training set performance = \\
-                      Validation set performance = \\
-                      Test set performance = 
+                \item Training set performance = 0.87 \\
+                      Validation set performance = 0.86 \\
+                      Test set performance = 0.91
                       \bigskip
                 \end{enumerate}  \medskip
                 
                 \begin{enumerate}[label={\alph*) },ref={\alph*)}]
                \item \textbf{Learning rate = 0.001} \medskip
                 \item Chart of Training Set and Validation Set Error vs. Number of Epochs\\
-                        \begin{enumerate}[label={\roman*)},ref={\alph*)}]
-                                \item
-                                \item
-                                \item
+        \includegraphics[width=5in]{simple_0p001.png}     \\
+                    \begin{enumerate}[label={\roman*)},ref={\alph*)}]
+                                 \item same answer as in the 1.0 learning  rate case \medskip
+                                \item From the plot, since the learning rate is so small, we might require a greater number of epochs (greater than 100) to see the overfitting phenomenon more clearly. \medskip
+                                \item same answer as in the 1.0 learning rate case \medskip
                         \end{enumerate} 
                         \bigskip
-                \item Training set performance = \\
-                      Validation set performance = \\
-                      Test set performance = 
+                \item Training set performance = 0.86 \\
+                      Validation set performance = 0.85\\
+                      Test set performance = 0.90
                       \bigskip
                 \end{enumerate} \bigskip
           \Part Hidden Network \medskip
