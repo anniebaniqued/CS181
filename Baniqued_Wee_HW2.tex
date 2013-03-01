@@ -179,15 +179,25 @@ valued variables.
                 \end{enumerate} \bigskip
           \Part Hidden Network \medskip
                 \begin{enumerate}[label={\alph*) },ref={\alph*)}]
-                \item We used learning rates of different magnitudes such as 1.0, 0.1, 0.01 and 0.001. \medskip
-                \item dfdfd
+                \item We used 1.0, 0.1, 0.01, and 0.001 as the learning rates for both 15 and 30 hidden units. We chose these rates in order to find the order of magnitude of the most effective learning rate. \medskip \\
+                For both 15 and 30 hidden units, we found the optimal learning rate was on the order of 0.1.
+
+\medskip
+                \item We monitor the validation set performance of the neural network. Our stopping condition is when the validation set performance decreases twice in a row. Empirically we found that a one-time decrease in validation was not enough to guarantee a good stopping point and a three-in-a-row decrease in validation performance rarely occurred in general.                        \medskip
+                \item Chart of Training Set and Validation Set Error vs. Number of Epochs (15 hidden units) \medskip 
+                \includegraphics[width=5in]{hidden15_0p1_zoomed.png} 
+                
+                Chart of Training Set and Validation Set Error vs. Number of Epochs (30 hidden units) \medskip 
+                \includegraphics[width=5in]{michael-part/hidden30-01.png}
+                \item For 15 hidden units with learning rate 1.0, we stopped after 10 epochs (2 consecutive decreases after). With the \textbf{optimal} learning rate 0.1, we stopped after 54 epochs. With learning rate 0.01, we stopped near 100 epochs (might need more than 100 epochs). With the optimal learning rate 0.001, we stopped near 100 epochs\ (might need more than 100 epochs).\medskip
+
+For 30 hidden units with learning rate 1.0, we stopped after 6 epochs (2 consecutive decreases after). With the \textbf{optimal} learning rate 0.1, we stopped after 79 epochs. With learning rate 0.01, we stopped after 83 epochs. With learning rate 0.001, we stopped after 83 epochs.          \medskip
+                \item For 15 units, using optimal learning rate 0.1 and stopping after 54 epochs, we get train performance of 0.94, validation performance of 0.91, and  test performance of 0.935.
+\medskip \\
+For 30 units, using optimal learning rate 0.1 and stopping after 79 epochs, we get train performance of 0.97, validation performance of 0.93, and test performance of 0.961.\medskip \\
+By comparing the two, we would choose the network structure of 30 hidden units given that it outperforms the 15 units network structure on all the training, validation and test sets. 
                         \medskip
-                \item Chart of Training Set and Validation Set Error vs. Number of Epochs \medskip
-                \item dfd
-                      \medskip
-                \item dfd 
-                        \medskip
-                \item dfd 
+                \item The test set performance of our chosen network with 30 hidden units and an optimal rate of 0.1  is 0.961 as mentioned above. This does significantly better than the test set performance of the committee of perceptrons with learning rate 1.0 in 3.6 which hovered around 0.91.
                 \bigskip
                 \bigskip
                 \end{enumerate}
@@ -210,7 +220,13 @@ Having achieved success with one layer, we thought we could improve on this succ
   
   \Problem \textbf{\textsc{\large{Alternative Error Function}}} \medskip
         \begin{enumerate}
-        \Part The difference between the error function $C$ and the loss function $L$ is that the former penalizes  large $w_{km}$ and $w_{mj}$ weights. Since we're trying to minimize $C$, we would also want to minimize the magnitude  of $w_{km}$ and $w_{mj}$. What this effectively does is prevent the network from using weights that it does not need or from overfitting the noise in the data.  
+        \Part The difference between the error function $C$ and the loss function $L$ is that the former implements some kind of regularization that  penalizes  large $w_{km}$ and $w_{mj}$ weights. Since we're trying to minimize $C$, we would also want to minimize the magnitude  of $w_{km}$ and $w_{mj}$.\medskip
+\\ The added penalty terms cause the weights to converge to smaller
+magnitudes than they otherwise would. Large weights can hurt
+generalization in a number of ways. Extremely large weights from input to
+hidden units and extremely large weights from hidden to output units can
+cause greater variance in outputs  beyond the range of the data if the activation
+function does not have the same range as the input data. This error function $C$ prevents the network from using weights that it does not need, from overfitting the noise in the data and from stretching the variance of outputs too much. 
         \medskip
         \Part \medskip
         $$ C(w)  = \displaystyle\sum_{n=1}^{N}\sum_{j=1}^{J}(y_{nj}-a_{nj})^2 + \lambda \sum_{m=1}^{M}\left( \sum_{k=0}^{K} w_{km}^2 + \sum_{j=1}^{J} w_{mj}^2\right) $$
