@@ -230,7 +230,7 @@ class NetworkFramework(object):
       test_log.append(perf_test)
 
       decreasing = False
-      for j in range(0,3):
+      for j in range(0,2):
         if (perf_validate-performance_log[i+1-j][1]<0):
           decreasing = True
           perf_validate = performance_log[i+1-j][1]

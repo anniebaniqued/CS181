@@ -385,13 +385,15 @@ class HiddenNetwork(EncodedNetworkFramework):
       for i in range(number_of_hidden_nodes):
         toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
 
+    print "weights len: " + str(len(self.network.weights))
+
     pass
     
 
 #<--- Problem 3, Question 8 ---> 
 
 class CustomNetwork(EncodedNetworkFramework):
-  def __init__(self, number_of_hidden_nodes=5):
+  def __init__(self, number_of_hidden_nodes=15):
     """
     Arguments:
     ---------
@@ -407,26 +409,48 @@ class CustomNetwork(EncodedNetworkFramework):
     """
     super(CustomNetwork, self).__init__() # <Don't remove this line>
 
+    """
     # 1) Adds an input node for each pixel
     for i in range(196):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.INPUT)
     
-    # 2) Adds the first hidden layer
-    for i in range(number_of_hidden_nodes):
+    # 2) Adds the hidden layer
+    for i in range(183):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
 
       for i in range(196):
         toAdd.AddInput(self.network.inputs[i], False, self.network)
 
+    # 3) Adds an output node for each possible digit label.
+    for i in range(10):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
+
+      for i in range(183):
+        toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
+    """
+    # 1) Adds an input node for each pixel
+    for i in range(196):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.INPUT)
+    
+    # 2) Adds the first hidden layer
+    for i in range(10):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
+
+      for j in range(196):
+        toAdd.AddInput(self.network.inputs[j], False, self.network)
+
     # 3) Add the second hidden layer
-    for i in range(number_of_hidden_nodes):
+    for i in range(15):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
   
-      for i in range(number_of_hidden_nodes):
-        toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
+      for j in range(10):
+        toAdd.AddInput(self.network.hidden_nodes[j], False, self.network)
 
 
     # 4) Adds an output node for each possible digit label.
@@ -434,7 +458,17 @@ class CustomNetwork(EncodedNetworkFramework):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
 
-      for i in range(number_of_hidden_nodes, number_of_hidden_nodes*2):
-        toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
+      for j in range(10, 25):
+        toAdd.AddInput(self.network.hidden_nodes[j], False, self.network)
+
+    print "hidden nodes length:" + str(len(self.network.hidden_nodes))
+    print "first hidden layer input connections length: " + str(len(self.network.hidden_nodes[0].inputs))
+    print "first hidden layer forward connections length: " + str(len(self.network.hidden_nodes[0].forward_neighbors))
+    print "second hidden layer input connections length: " + str(len(self.network.hidden_nodes[16].inputs))
+    print "second hidden layer forward connections length: " + str(len(self.network.hidden_nodes[16].forward_neighbors))
+
+    print "weights len: " + str(len(self.network.weights))
 
     pass
+  
+
