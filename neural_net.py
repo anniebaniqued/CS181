@@ -229,6 +229,7 @@ class NetworkFramework(object):
       ### COMMENT OUT IF NOT NEEDED #############
       test_log.append(perf_test)
 
+      # stopping condition
       decreasing = False
       for j in range(0,2):
         if (perf_validate-performance_log[i+1-j][1]<0):
