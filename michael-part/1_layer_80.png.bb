@@ -1,1 +1,1 @@
-%%BoundingBox: 0 0 157.44 109.92
+%%BoundingBox: 0 0 155.52 109.68
