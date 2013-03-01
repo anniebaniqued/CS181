@@ -155,7 +155,7 @@
   
   \Problem \textbf{\textsc{\large{Alternative Error Function}}} \medskip
         \begin{enumerate}
-        \Part The difference between the error function $C$ and the loss function $L$ is that the former penalizes having large weights $w_{km}$ and $w_{mj}$. Having large weights in this case is indicative of overfitting the noise in the input data. 
+        \Part The difference between the error function $C$ and the loss function $L$ is that the former penalizes having large weights $w_{km}$ and $w_{mj}$. Having large weights in this case 
         \medskip
         \Part \medskip
         $$ C(w)  = \displaystyle\sum_{n=1}^{N}\sum_{j=1}^{J}(y_{nj}-a_{nj})^2 + \lambda \sum_{m=1}^{M}\left( \sum_{k=0}^{K} w_{km}^2 + \sum_{j=1}^{J} w_{mj}^2\right) $$
