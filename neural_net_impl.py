@@ -393,7 +393,7 @@ class HiddenNetwork(EncodedNetworkFramework):
 #<--- Problem 3, Question 8 ---> 
 
 class CustomNetwork(EncodedNetworkFramework):
-  def __init__(self, number_of_hidden_nodes=15):
+  def __init__(self, firstlayer=15, secondlayer=15):
     """
     Arguments:
     ---------
@@ -401,11 +401,11 @@ class CustomNetwork(EncodedNetworkFramework):
 
     Returns:
     --------
-    Your pick
+    Nothing
 
     Description:
     -----------
-    Surprise me!
+    Commented out code trains a single hidden layer with a large number of hidden units. Alternate code trains two hidden layers.
     """
     super(CustomNetwork, self).__init__() # <Don't remove this line>
 
@@ -431,13 +431,14 @@ class CustomNetwork(EncodedNetworkFramework):
       for i in range(183):
         toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
     """
+
     # 1) Adds an input node for each pixel
     for i in range(196):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.INPUT)
     
     # 2) Adds the first hidden layer
-    for i in range(5):
+    for i in range(firstlayer):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
 
@@ -445,11 +446,11 @@ class CustomNetwork(EncodedNetworkFramework):
         toAdd.AddInput(self.network.inputs[j], False, self.network)
 
     # 3) Add the second hidden layer
-    for i in range(5):
+    for i in range(secondlayer):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
   
-      for j in range(5):
+      for j in range(firstlayer):
         toAdd.AddInput(self.network.hidden_nodes[j], False, self.network)
 
 
@@ -458,7 +459,7 @@ class CustomNetwork(EncodedNetworkFramework):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
 
-      for j in range(5, 10):
+      for j in range(firstlayer, firstlayer+secondlayer):
         toAdd.AddInput(self.network.hidden_nodes[j], False, self.network)
 
     pass

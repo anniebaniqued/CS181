@@ -1,0 +1,12 @@
+* * * * * * * * *
+Parameters => Epochs: 100, Learning Rate: 0.100000
+Type of network used: HiddenNetwork
+Input Nodes: 196, Hidden Nodes: 160, Output Nodes: 10
+* * * * * * * * *
+1 Performance: 0.43300000 0.406 0.452
+2 Performance: 0.80100000 0.771 0.853
+3 Performance: 0.85122222 0.842 0.891
+4 Performance: 0.87111111 0.862 0.901
+5 Performance: 0.87944444 0.866 0.912
+6 Performance: 0.88711111 0.877 0.917
+7 Performance: 0.89355556 0.883 0.919
