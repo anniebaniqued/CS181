@@ -391,7 +391,7 @@ class HiddenNetwork(EncodedNetworkFramework):
 #<--- Problem 3, Question 8 ---> 
 
 class CustomNetwork(EncodedNetworkFramework):
-  def __init__(self):
+  def __init__(self, number_of_hidden_nodes=5):
     """
     Arguments:
     ---------
@@ -406,4 +406,35 @@ class CustomNetwork(EncodedNetworkFramework):
     Surprise me!
     """
     super(CustomNetwork, self).__init__() # <Don't remove this line>
+
+    # 1) Adds an input node for each pixel
+    for i in range(196):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.INPUT)
+    
+    # 2) Adds the first hidden layer
+    for i in range(number_of_hidden_nodes):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
+
+      for i in range(196):
+        toAdd.AddInput(self.network.inputs[i], False, self.network)
+
+    # 3) Add the second hidden layer
+    for i in range(number_of_hidden_nodes):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
+  
+      for i in range(number_of_hidden_nodes):
+        toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
+
+
+    # 4) Adds an output node for each possible digit label.
+    for i in range(10):
+      toAdd = Node()
+      self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
+
+      for i in range(number_of_hidden_nodes, number_of_hidden_nodes*2):
+        toAdd.AddInput(self.network.hidden_nodes[i], False, self.network)
+
     pass
