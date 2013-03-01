@@ -180,8 +180,7 @@ valued variables.
           \Part Hidden Network \medskip
                 \begin{enumerate}[label={\alph*) },ref={\alph*)}]
                 \item We used 1.0, 0.1, 0.01, and 0.001 as the learning rates for both 15 and 30 hidden units. We chose these rates in order to find the order of magnitude of the most effective learning rate. \medskip \\
-                For both 15 and 30 hidden units, we found the optimal learning rate was on the order of 0.1.
-
+                For both 15 and 30 hidden units, we found that the optimal learning rate was on the order of 0.1. Test/train/validation performances are mentioned in the succeeding subproblems. The learning rate of 1.0 caused oscillations in gradient descent and didn't really converge whereas the small learning rates of 0.01 and 0.001 cause gradient descent to converge really slowly.  
 \medskip
                 \item We monitor the validation set performance of the neural network. Our stopping condition is when the validation set performance decreases twice in a row. Empirically we found that a one-time decrease in validation was not enough to guarantee a good stopping point and a three-in-a-row decrease in validation performance rarely occurred in general.                        \medskip
                 \item Chart of Training Set and Validation Set Error vs. Number of Epochs (15 hidden units) \medskip 
