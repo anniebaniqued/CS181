@@ -343,7 +343,7 @@ class SimpleNetwork(EncodedNetworkFramework):
 #<---- Problem 3, Question 7 --->
 
 class HiddenNetwork(EncodedNetworkFramework):
-  def __init__(self, number_of_hidden_nodes=30):
+  def __init__(self, number_of_hidden_nodes=160):
     """
     Arguments:
     ---------
@@ -437,7 +437,7 @@ class CustomNetwork(EncodedNetworkFramework):
       self.network.AddNode(toAdd, NeuralNetwork.INPUT)
     
     # 2) Adds the first hidden layer
-    for i in range(10):
+    for i in range(5):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
 
@@ -445,11 +445,11 @@ class CustomNetwork(EncodedNetworkFramework):
         toAdd.AddInput(self.network.inputs[j], False, self.network)
 
     # 3) Add the second hidden layer
-    for i in range(15):
+    for i in range(5):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.HIDDEN)
   
-      for j in range(10):
+      for j in range(5):
         toAdd.AddInput(self.network.hidden_nodes[j], False, self.network)
 
 
@@ -458,16 +458,8 @@ class CustomNetwork(EncodedNetworkFramework):
       toAdd = Node()
       self.network.AddNode(toAdd, NeuralNetwork.OUTPUT)
 
-      for j in range(10, 25):
+      for j in range(5, 10):
         toAdd.AddInput(self.network.hidden_nodes[j], False, self.network)
-
-    print "hidden nodes length:" + str(len(self.network.hidden_nodes))
-    print "first hidden layer input connections length: " + str(len(self.network.hidden_nodes[0].inputs))
-    print "first hidden layer forward connections length: " + str(len(self.network.hidden_nodes[0].forward_neighbors))
-    print "second hidden layer input connections length: " + str(len(self.network.hidden_nodes[16].inputs))
-    print "second hidden layer forward connections length: " + str(len(self.network.hidden_nodes[16].forward_neighbors))
-
-    print "weights len: " + str(len(self.network.weights))
 
     pass
   
