@@ -81,7 +81,7 @@ A perceptron cannot detect this feature. There are too many variations and combi
 
 \item Boosted decision stumps \medskip
 
-        Boosted decision stumps wouldn’t do well on this domain. Because boosted decision stumps split on only one attribute, they do not combine features and individually will not be able to capture patterns in the data well enough to classify digits. Individual stumps can do no better than chance since on their own they cannot predict what digit a particular pixel intensity is a part of. \medskip
+        Boosted decision stumps wouldn'’t do well on this domain. Because boosted decision stumps split on only one attribute, they do not combine features and individually will not be able to capture patterns in the data well enough to classify digits. Individual stumps can do no better than chance since on their own they cannot predict what digit a particular pixel intensity is a part of. \medskip
 \item Perceptrons \medskip
 
         Perceptrons would be especially bad for recognizing digits. Since there are 10 possible digits to correctly classify, it presents too much variability for a single perceptron to classify. Perceptrons have more limitations beyond just being able to output binary values, which is a problem in a 10-class domain. \medskip
@@ -103,7 +103,7 @@ A perceptron cannot detect this feature. There are too many variations and combi
         \Part See Backprop function.\medskip
         \Part See Train function.\medskip
         \Part See EncodeLabel, GetNetworkLabel, Convert and InitializeWeights  functions.\medskip 
-        \Part Input data normalization is useful when we think about the shape of the sigmoid function which is the activation function we use. The sigmoid function is approximately linear when input is near 0 and converges to 1 for large input and 0 for small input. Since the activation/sigmoid function takes in the linear combination of weights and activity at each parent node, we want that linear combination to be around the vicinity of 0 which can be achieved by normalizing the input values from [0,255] to between [0,1]. \medskip
+        \Part Input data normalization is useful when we think about the shape of the sigmoid function which is the activation function we use. The sigmoid function is approximately linear when input is near 0 and converges to 1 for large input and 0 for small input. Since the activation/sigmoid function takes in the linear combination of weights and activity at each parent node, we want that linear combination to be in the vicinity of 0 which can be achieved by normalizing the input values from [0,255] to between [0,1]. \medskip
 
         Furthermore, if we have a wide range of input values, the bigger values will tend to
 have a higher contribution to the output error, and so, the error reduction algorithm will
@@ -239,7 +239,7 @@ The first term on the right-hand side is exactly the same as that in the loss fu
  $ \propto \left(a_k\delta_m + \lambda w_{km}\right)   
   \end{equation} \medskip \\ 
  
- Deriving a weight update rule, we get $w_{km}^{(r+1)} \leftarrow w_{km}^{(r)} +\alpha\left(a_k\delta_m + \lambda w_{km}^{(r)}\right).$ Combining terms and constants, we have, $w_{km}^{(r+1)} \leftarrow (1 +\lambda')w_{km}^{(r)} +\alpha\left(a_k\delta_m \right) $. \bigskip
+ Deriving a weight update rule, we get $w_{km}^{(r+1)} \leftarrow w_{km}^{(r)} +\alpha\left(a_k\delta_m + \lambda w_{km}^{(r)}\right).$ Combining terms and constants, we have, $w_{km}^{(r+1)} \leftarrow (1 +\lambda')w_{km}^{(r)} +\alpha\left(a_k\delta_m \right) $. The $\lambda'$ can be determined using cross validation. \bigskip
 
 For updating weights $w_{mj}$ between hidden unit $m$ and output $j$ for a particular example, we take the partial derivatives with respect to $w_{mj}$, go through the same process and arrive at the following similar weight update rule: $w_{mj}^{(r+1)} \leftarrow (1 +\lambda')w_{mj}^{(r)} +\alpha\left(a_m\delta_j \right) $ .
 
