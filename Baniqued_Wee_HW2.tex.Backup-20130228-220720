@@ -155,28 +155,9 @@
   
   \Problem \textbf{\textsc{\large{Alternative Error Function}}} \medskip
         \begin{enumerate}
-        \Part The difference between the error function $C$ and the loss function $L$ is that the former penalizes having large weights $w_{km}$ and $w_{mj}$. Having large weights in this case 
+        \Part d
         \medskip
-        \Part \medskip
-        $$ C(w)  = \displaystyle\sum_{n=1}^{N}\sum_{j=1}^{J}(y_{nj}-a_{nj})^2 + \lambda \sum_{m=1}^{M}\left( \sum_{k=0}^{K} w_{km}^2 + \sum_{j=1}^{J} w_{mj}^2\right) $$
-
-        For updating weights $w_{km}$ between input $k$ and hidden input $m$, for a particular example, we have: 
-
-        $$\displaystyle \frac{\partial{ C(w)}}{\partial w_{km}} &= \displaystyle \frac{\partial{}}{\partial w_{km}} \left(\sum_{j=1}^{J}(y_{j}-a_{j})^2\right) + \lambda \displaystyle \frac{\partial{}}{\partial w_{km }}\left( \sum_{m'=1}^{M} \sum_{k'=0}^{K} w_{k'm'}^2 \right) + \lambda \displaystyle \frac{\partial{}}{\partial w_{km }}\left( \sum_{m'=1}^{M} \sum_{j'=1}^{J} w_{m'j'}^2 \right)$$\\
-The first term on the right-hand side is exactly the same as that in the loss function. We've derived the partial derivative or the first term in the Lecture 6 notes on page 9. \medskip\\ The last term or partial derivative on the right-hand side of the equation is just $0$ since $w_{km}$ doesn't appear in the expression $w_{m'j'}^2$. Thus, we only have to simplify the middle term. In the middle term, the weight $w_{km}$ only influences the $m$th hidden unit, so only one element in the summation matters. Simplifying, we get the following gradient descent:  
-  \begin{equation*}
-  $ \displaystyle  &= -2g'(z_m)x_k  \sum_{j=1}^{J} \delta_{j}w_{mj} + \lambda 2 w_{km}$ \medskip \\
- $ \propto \left(a_k\delta_m + \lambda w_{km}\right)   
-  \end{equation} \medskip \\ 
- 
- Deriving a weight update rule, we get $w_{km}^{(r+1)} \leftarrow w_{km}^{(r)} +\alpha\left(a_k\delta_m + \lambda w_{km}^{(r)}\right).$ Combining terms and constants, we have, $w_{km}^{(r+1)} \leftarrow (1 +\lambda')w_{km}^{(r)} +\alpha\left(a_k\delta_m \right) $. \bigskip
-
-For updating weights $w_{mj}$ between hidden unit $m$ and output $j$ for a particular example, we take the partial derivatives with respect to $w_{mj}$, go through the same process and arrive at the following similar weight update rule: $w_{mj}^{(r+1)} \leftarrow (1 +\lambda')w_{mj}^{(r)} +\alpha\left(a_m\delta_j \right) $ .
-
-        
-        \end{equation}
-
-          
+        \Part
         \end{enumerate}
     \bigskip \\
 
